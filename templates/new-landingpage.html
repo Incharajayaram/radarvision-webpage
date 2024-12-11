@@ -149,54 +149,6 @@
       justify-content: space-around;
       margin-top: 50px;
     }
-    #team-section {
-  padding: 60px 20px;
-  background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
-  color: #043873;
-  text-align: center;
-}
-
-#team-section h2 {
-  font-size: 36px;
-  margin-bottom: 40px;
-  color: #043873;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
-  gap: 20px; /* Adjust the space between the boxes */
-  justify-items: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
-}
-
-.team-member {
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  padding: 30px;
-  max-width: 300px; /* Ensure the team member boxes aren't too wide */
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-align: center;
-}
-
-
-.team-member h3 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: #043873;
-}
-
-.team-member p {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #555555;
-}
-
-.team-member:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
 
     .feature {
       text-align: center;
@@ -224,6 +176,117 @@
       text-decoration: none;
       font-weight: bold;
     }
+
+    /* Existing styles... */
+    
+    .video-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px;
+      background-color: #f4f4f4;
+    }
+    .video-section h2 {
+      font-size: 32px;
+      color: #043873;
+      margin-bottom: 20px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 10px;
+      border: 3px solid #1a3f85;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background-color: #4F9CF9;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .controls button:hover {
+      background-color: #357ae8;
+    }
+
+    #team-section {
+  padding: 60px 20px;
+  background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+  color: #043873;
+  text-align: center;
+}
+
+#team-section h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: #043873;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.team-member {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  max-width: 350px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.team-member h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #043873;
+}
+
+.team-member p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #555555;
+}
+
+.team-member:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #team-section h2 {
+    font-size: 28px;
+  }
+}
+
+
+      
   </style>
 </head>
 <body>
@@ -231,7 +294,7 @@
     <div class="logo">MicroClassify</div>
     <ul class="nav-links">
       <li><a href="{{ url_for('home') }}">Home</a></li>
-      <li><a href="{{ url_for('upload') }}">Upload&Classify</a></li>
+      <li><a href="{{ url_for('upload') }}">Upload & Classify</a></li>
       <li><a href="{{ url_for('contact') }}">Contact</a></li>
       <li><a href="{{ url_for('loginpage') }}">Login/Signup</a></li>
       </ul>
@@ -240,8 +303,7 @@
   <div id="home" class="image">
     <div class="text-container">
       <h1>Get More Done with MicroClassify</h1>
-      <p>
-        RadarVision uses advanced radar and machine learning to accurately classify drones and non-drones in real-time, enhancing safety and security.      </p>
+      <p>Project management software that empowers your team to collaborate, plan, analyze, and manage everyday tasks.</p>
       <a href="{{ url_for('upload') }}"><button class="cta-button">Try MicroClassify Free →</button></a>
     </div>
     <div class="image-container">
@@ -256,7 +318,7 @@
     </p>
   </div>
 
-  <!-- <div id="features" class="section">
+  <div id="features" class="section">
     <h2>Key Features</h2>
     <div class="features">
       <div class="feature">
@@ -272,8 +334,43 @@
         <p>Web-Based Deployment</p>
       </div>
     </div>
-  </div> -->
-  
+  </div>
+
+</div> <!-- End of Hero Section -->
+
+<!-- Video Section -->
+<div id="video" class="video-section">
+  <h2>Introduction to MicroClassify</h2>
+  <div class="video-container">
+    <video id="intro-video" src=".mp4" controls>
+      Your browser does not support the video tag.
+    </video>
+    <div class="controls">
+      <button onclick="playVideo()">Play</button>
+      <button onclick="pauseVideo()">Pause</button>
+      <button onclick="skipVideo(-5)">⟵ Skip Back 5s</button>
+      <button onclick="skipVideo(5)">Skip Forward 5s ⟶</button>
+    </div>
+  </div>
+</div>
+
+<!-- Remaining sections... -->
+<script>
+  const video = document.getElementById('intro-video');
+
+  function playVideo() {
+    video.play();
+  }
+
+  function pauseVideo() {
+    video.pause();
+  }
+
+  function skipVideo(seconds) {
+      video.currentTime += seconds;
+    }
+  </script>
+
 <!--team details-->
 <div id="team-section" class="section">
   <h2>Meet Our Team</h2>
@@ -282,7 +379,10 @@
       <h3>Inchara</h3>
       <p>Team Leader with expertise in AI and ML, ensuring innovative solutions and effective collaboration.</p>
     </div>
-    
+    <div class="team-member">
+      <h3>Shravya</h3>
+      <p>Focuses on AI/ML development, creating intelligent systems that enhance user experiences.</p>
+    </div>
     <div class="team-member">
       <h3>Diptangshu</h3>
       <p>IoT expert working on integrating smart devices and seamless communication systems.</p>
@@ -290,10 +390,6 @@
     <div class="team-member">
       <h3>Anand</h3>
       <p>Handles frontend and backend development, ensuring robust functionality and smooth interfaces.</p>
-    </div>
-    <div class="team-member">
-      <h3>Shravya</h3>
-      <p>Focuses on AI/ML development, creating intelligent systems that enhance user experiences.</p>
     </div>
     <div class="team-member">
       <h3>Likith</h3>
@@ -307,8 +403,13 @@
 </div>
 
 
-  <div id="contact" class="footer">
-    <p>Contact us at <a href="mailto:contact@radarvision.com">contact@radarvision.com</a> or visit our <a href="#">Help Center</a>.</p> <!-- change this later -->
-  </div>
-</body>
+    
+    
+
+
+</div> <!-- End of Hero Section -->
+  <div id="contact" class="footer"></div>
+  <p>Contact us at <a href="mailto:contact@radarvision.com">contact@radarvision.com</a> or visit our <a href="#">Help Center</a>.</p> <!-- change this later -->
+  </div> 
+</body>  
 </html>
