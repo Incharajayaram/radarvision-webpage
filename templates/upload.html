@@ -1,283 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload and Predict</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Upload and Predict</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Inter", sans-serif;
+            }
 
-        body {
-            background: linear-gradient(to bottom, #0a62c6 0%, #0a62c6 100%);
-            color: white;
-            overflow-x: hidden;
-        }
-        .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: rgba(0,0,0, 0.3); /* More transparent */
-        padding: 15px 30px;
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 10;
-      }
+            body {
+                background: linear-gradient(to bottom, #0a62c6 0%, #0a62c6 100%);
+                color: white;
+                overflow-x: hidden;
+            }
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.3); /* More transparent */
+                padding: 15px 30px;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 10;
+            }
 
-
-          .navbar .logo {
-              color: white; 
-              font-weight: bold;
-              background: none; 
-              padding: 8px 10%;
-              border-radius: 50%;
-              font-size: 28px;
-
-          }
-
-          .nav-links {
-              list-style: none;
-              display: flex;
-              gap: 30px;
-              margin: 0;
-              padding: 10px;
-              margin-right: 80px;
-          }
-
-          .nav-links li a {
-              text-decoration: none;
-              color: white;
-              font-size: 20px;
-              padding: 15px;
-              border-radius: 5px;
-              transition: background-color 0.3s ease;
-          }
-
-          .nav-links li a:hover {
-              background-color: #4F9CF9;
-          }
-
-
-        h1 {
-            color: white;
-            text-align: center;
-            margin-top: 100px;
-            margin-bottom: 20px;
-            font-size: 2.2rem;
-        }
-
-        form {
-            background-color: #ffffff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-            margin: 20px auto;
-        }
-
-        label {
-            font-size: 1rem;
-            display: block;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        input[type="radio"] {
-            margin-right: 10px;
-        }
-
-        input[type="file"] {
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #f4f9ff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 100%;
-            cursor: pointer;
-        }
-
-        input[type="file"]::-webkit-file-upload-button {
-            background-color: #2a77c0;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        input[type="file"]::-webkit-file-upload-button:hover {
-            background-color: #2468a3;
-        }
-
-        button {
-            background-color: #2a77c0;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #2468a3;
-        }
-
-        #results {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.9);
-            width: 100%;
-            max-width: 500px;
-            margin: 20px auto;
-            text-align: center;
-        }
-
-        #prediction, #confidence, #time {
-            font-size: 1.2rem;
-            color: #333;
-            margin: 10px 0;
-        }
-
-        .error {
-            color: red;
-            font-size: 1rem;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
             .navbar .logo {
-                font-size: 24px;
+                color: white;
+                font-weight: bold;
+                background: none;
+                padding: 8px 10%;
+                border-radius: 50%;
+                font-size: 28px;
             }
 
             .nav-links {
-                gap: 15px;
+                list-style: none;
+                display: flex;
+                gap: 30px;
+                margin: 0;
+                padding: 10px;
+                margin-right: 80px;
             }
 
             .nav-links li a {
-                font-size: 16px;
+                text-decoration: none;
+                color: white;
+                font-size: 20px;
+                padding: 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            .nav-links li a:hover {
+                background-color: #4f9cf9;
             }
 
             h1 {
-                font-size: 1.8rem;
+                color: white;
+                text-align: center;
+                margin-top: 100px;
+                margin-bottom: 20px;
+                font-size: 2.2rem;
             }
 
             form {
-                max-width: 90%;
-                padding: 20px;
+                background-color: #ffffff;
+                padding: 25px;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 500px;
+                margin: 20px auto;
+            }
+
+            label {
+                font-size: 1rem;
+                display: block;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            input[type="radio"] {
+                margin-right: 10px;
+            }
+
+            input[type="file"] {
+                margin-bottom: 20px;
+                padding: 10px;
+                background-color: #f4f9ff;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                width: 100%;
+                cursor: pointer;
+            }
+
+            input[type="file"]::-webkit-file-upload-button {
+                background-color: #2a77c0;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            input[type="file"]::-webkit-file-upload-button:hover {
+                background-color: #2468a3;
             }
 
             button {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .navbar {
-                flex-direction: column;
-                padding: 20px;
+                background-color: #2a77c0;
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 100%;
+                font-size: 1rem;
+                transition: background-color 0.3s ease;
             }
 
-            .nav-links li a {
-                margin: 5px 0;
-                padding: 10px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">MicroClassify</div>
-            <ul class="nav-links">
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('upload') }}">Upload & Classify</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                <li><a href="{{ url_for('loginpage') }}">Login/Signup</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <h1 style="margin-top: 12%;">Upload and Predict</h1>
-    <form id="upload-form" method="post">
-        <label>
-            <input type="radio" name="model" value="cnn"> Custom CNN model
-        </label>
-        <label>
-            <input type="radio" name="model" value="vgg"> VGG model
-        </label>
-        <label>
-            <input type="radio" name="model" value="cnnwa"> CNN with spatial Attention
-        </label>
-        <label for="image">Choose an image:</label>
-        <input type="file" name="image" id="image" accept="image/*" style="color: #222;">
-        <button type="submit">Submit</button>
-        <div id="results">
-            <p id="prediction"></p>
-            <p id="confidence"></p>
-            <p id="time"></p>
-        </div>
-    </form>
-    
-
-    <script>
-        document.getElementById('upload-form').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const formData = new FormData();
-            const fileInput = document.getElementById('image');
-            const selectedModel = document.querySelector('input[name="model"]:checked');
-
-            if (!fileInput.files.length) {
-                alert('Please upload an image.');
-                return;
-            }
-            if (!selectedModel) {
-                alert('Please select a model.');
-                return;
+            button:hover {
+                background-color: #2468a3;
             }
 
-            formData.append('image', fileInput.files[0]);
-            formData.append('model', selectedModel.value);
+            #results {
+                margin-top: 20px;
+                padding: 15px;
+                border-radius: 5px;
+                background-color: rgba(255, 255, 255, 0.9);
+                width: 100%;
+                max-width: 500px;
+                margin: 20px auto;
+                text-align: center;
+            }
 
-            try {
-                const response = await fetch('http://127.0.0.1:5000/predict', {
-                    method: 'POST',
-                    body: formData,
-                });
+            #prediction,
+            #confidence,
+            #time {
+                font-size: 1.2rem;
+                color: #333;
+                margin: 10px 0;
+            }
 
-                if (!response.ok) {
-                    throw new Error('Prediction failed');
+            .error {
+                color: red;
+                font-size: 1rem;
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            /* Mobile Responsiveness */
+            @media (max-width: 768px) {
+                .navbar .logo {
+                    font-size: 24px;
                 }
 
-                const data = await response.json();
-                document.getElementById('prediction').textContent = `Prediction: ${data.prediction}`;
-                document.getElementById('confidence').textContent = `Confidence: ${data.confidence}`;
-                document.getElementById('time').textContent = `time: ${data.time}`;
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Error in prediction. Please try again.');
+                .nav-links {
+                    gap: 15px;
+                }
+
+                .nav-links li a {
+                    font-size: 16px;
+                }
+
+                h1 {
+                    font-size: 1.8rem;
+                }
+
+                form {
+                    max-width: 90%;
+                    padding: 20px;
+                }
+
+                button {
+                    font-size: 0.9rem;
+                }
             }
-        });
-    </script>
-</body>
+
+            @media (max-width: 480px) {
+                .nav-links {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .navbar {
+                    flex-direction: column;
+                    padding: 20px;
+                }
+
+                .nav-links li a {
+                    margin: 5px 0;
+                    padding: 10px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo">MicroClassify</div>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('upload') }}">Upload & Classify</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    <li><a href="{{ url_for('loginpage') }}">Login/Signup</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <h1 style="margin-top: 12%;">Upload and Predict</h1>
+        <form id="upload-form" method="post">
+            <label> <input type="radio" name="model" value="cnn" /> Custom CNN model </label>
+            <label> <input type="radio" name="model" value="vgg" /> VGG model </label>
+            <label> <input type="radio" name="model" value="cnnwa" /> CNN with spatial Attention </label>
+            <label for="image">Choose an image:</label>
+            <input type="file" name="image" id="image" accept="image/*" style="color: #222;" />
+            <button type="submit">Submit</button>
+            <div id="results">
+                <p id="prediction"></p>
+                <p id="confidence"></p>
+                <p id="time"></p>
+            </div>
+        </form>
+
+        <script>
+            document.getElementById("upload-form").addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData();
+                const fileInput = document.getElementById("image");
+                const selectedModel = document.querySelector('input[name="model"]:checked');
+
+                if (!fileInput.files.length) {
+                    alert("Please upload an image.");
+                    return;
+                }
+                if (!selectedModel) {
+                    alert("Please select a model.");
+                    return;
+                }
+
+                formData.append("image", fileInput.files[0]);
+                formData.append("model", selectedModel.value);
+
+                try {
+                    const response = await fetch("http://127.0.0.1:5000/predict", {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Prediction failed");
+                    }
+
+                    const data = await response.json();
+                    document.getElementById("prediction").textContent = `Prediction: ${data.prediction}`;
+                    document.getElementById("confidence").textContent = `Confidence: ${data.confidence}`;
+                    document.getElementById("time").textContent = `time: ${data.time}`;
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Error in prediction. Please try again.");
+                }
+            });
+        </script>
+    </body>
 </html>

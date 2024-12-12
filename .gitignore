@@ -1,6 +1,7 @@
 *.keras
 *.h5
 *.pt
+*.pth
 *.bat
 *.sh
 *.log

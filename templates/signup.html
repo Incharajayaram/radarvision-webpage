@@ -1,289 +1,290 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup Page</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Signup Page</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-* {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    box-sizing: border-box;
-}
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: "Inter", sans-serif;
+                box-sizing: border-box;
+            }
 
-body {
-    background: linear-gradient(to bottom, #0a62c6 0%, #0a62c6 100%);
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.3); /* Matches Login page */
-    padding: 15px 30px; /* Matches Login page padding */
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-}
+            body {
+                background: linear-gradient(to bottom, #0a62c6 0%, #0a62c6 100%);
+                color: white;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.3); /* Matches Login page */
+                padding: 15px 30px; /* Matches Login page padding */
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 10;
+            }
 
-.navbar .logo {
-    color: white; 
-    font-weight: bold;
-    background: none; 
-    padding: 8px 10%;
-    border-radius: 50%; /* Matches rounded logo style in Login */
-    font-size: 28px;
-}
+            .navbar .logo {
+                color: white;
+                font-weight: bold;
+                background: none;
+                padding: 8px 10%;
+                border-radius: 50%; /* Matches rounded logo style in Login */
+                font-size: 28px;
+            }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    margin: 0;
-    padding: 10px;
-    margin-right: 80px;
-}
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 30px;
+                margin: 0;
+                padding: 10px;
+                margin-right: 80px;
+            }
 
-.nav-links li a {
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    padding: 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+            .nav-links li a {
+                text-decoration: none;
+                color: white;
+                font-size: 20px;
+                padding: 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
 
-.nav-links li a:hover {
-    background-color: #4F9CF9;
-}
+            .nav-links li a:hover {
+                background-color: #4f9cf9;
+            }
 
+            .container {
+                height: 650px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 80%;
+                max-width: 1200px;
+                background: linear-gradient(to bottom right, #1a3f85, #4f9cf9);
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+                margin-top: 150px;
+            }
 
-.container {
-    height: 650px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 80%;
-    max-width: 1200px;
-    background: linear-gradient(to bottom right, #1a3f85, #4F9CF9);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-    margin-top: 150px;
-}
+            .signup-box,
+            .section {
+                flex: 1;
+                padding: 50px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-width: 300px;
+            }
 
-.signup-box, .section {
-    flex: 1;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 300px;
-}
+            .signup-box {
+                background: white;
+                color: #043873;
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+            }
 
-.signup-box {
-    background: white;
-    color: #043873;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-}
+            .section {
+                background: linear-gradient(to bottom, #245eac, #4f9cf9);
+                border-top-right-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
 
-.section {
-    background: linear-gradient(to bottom, #245eac, #4F9CF9);
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
+            .signup-box h2,
+            .section h2 {
+                font-size: 28px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
 
-.signup-box h2, .section h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    text-align: center;
-}
+            .signup-box input {
+                width: 100%; /* Full width for better responsiveness */
+                max-width: 350px; /* Prevents inputs from being too large on wider screens */
+                padding: 12px; /* Reduced padding for smaller screens */
+                margin: 8px 0; /* Adjusted margin for better spacing */
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                outline: none;
+            }
 
-.signup-box input {
-    width: 100%; /* Full width for better responsiveness */
-    max-width: 350px; /* Prevents inputs from being too large on wider screens */
-    padding: 12px; /* Reduced padding for smaller screens */
-    margin: 8px 0; /* Adjusted margin for better spacing */
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-    
-}
+            /* Button Responsiveness */
+            .signup-button,
+            .login-button {
+                width: 100%; /* Full width for better alignment on small screens */
+                max-width: 200px; /* Limit the width to keep buttons proportional */
+                padding: 12px;
+                font-size: 16px; /* Slightly smaller font for buttons */
+            }
 
-/* Button Responsiveness */
-.signup-button, .login-button {
-    width: 100%; /* Full width for better alignment on small screens */
-    max-width: 200px; /* Limit the width to keep buttons proportional */
-    padding: 12px;
-    font-size: 16px; /* Slightly smaller font for buttons */
-}
+            .signup-box input:focus {
+                border: 2px solid #4f9cf9;
+                box-shadow: 0 0 8px rgba(79, 156, 249, 0.5);
+            }
 
-.signup-box input:focus {
-    border: 2px solid #4F9CF9;
-    box-shadow: 0 0 8px rgba(79, 156, 249, 0.5);
-}
+            .signup-button {
+                width: 50%;
+                padding: 15px;
+                background-color: #4f9cf9;
+                color: white;
+                font-size: 18px;
+                font-weight: bold;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s;
+                margin-top: 20px;
+                text-align: center;
+            }
 
-.signup-button {
-    width: 50%;
-    padding: 15px;
-    background-color: #4F9CF9;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s;
-    margin-top: 20px;
-    text-align: center;
-}
+            .signup-button:hover {
+                background-color: #357ae8;
+                transform: scale(1.05);
+            }
 
-.signup-button:hover {
-    background-color: #357ae8;
-    transform: scale(1.05);
-}
+            .section p {
+                font-size: 16px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
 
-.section p {
-    font-size: 16px;
-    margin-bottom: 20px;
-    text-align: center;
-}
+            .login-button {
+                padding: 15px 30px;
+                background-color: white;
+                color: #4f9cf9;
+                font-size: 18px;
+                font-weight: bold;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                text-align: center;
+                transition: background-color 0.3s ease, transform 0.2s;
+            }
 
-.login-button {
-    padding: 15px 30px;
-    background-color: white;
-    color: #4F9CF9;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s;
-}
+            .login-button:hover {
+                background-color: #e6e6e6;
+                transform: scale(1.05);
+            }
 
-.login-button:hover {
-    background-color: #e6e6e6;
-    transform: scale(1.05);
-}
+            footer {
+                text-align: center;
+                padding: 20px;
+                background-color: #043873;
+                color: white;
+                margin-top: auto;
+                width: 100%;
+            }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #043873;
-    color: white;
-    margin-top: auto;
-    width: 100%;
-}
+            /* Media Queries for Responsiveness */
+            @media (max-width: 1024px) {
+                .container {
+                    margin-top: 50px;
+                    flex-direction: column;
+                }
+                .signup-box,
+                .section {
+                    padding: 20px; /* Reduced padding for smaller screens */
+                }
+            }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 1024px) {
-    .container {
-        margin-top: 50px;
-        flex-direction: column;
-    }
-    .signup-box, .section {
-        padding: 20px; /* Reduced padding for smaller screens */
-    }
-}
+            @media (max-width: 768px) {
+                .signup-box h2,
+                .section h2 {
+                    font-size: 24px; /* Adjust heading size */
+                }
+                .signup-box input,
+                .signup-button,
+                .login-button {
+                    width: 90%; /* Make inputs and buttons slightly smaller with spacing */
+                }
+            }
 
-@media (max-width: 768px) {
-    .signup-box h2, .section h2 {
-        font-size: 24px; /* Adjust heading size */
-    }
-    .signup-box input, .signup-button, .login-button {
-        width: 90%; /* Make inputs and buttons slightly smaller with spacing */
-    }
-}
+            @media (max-width: 480px) {
+                .signup-box input {
+                    width: 100%; /* Full width for very small screens */
+                }
+                .signup-button {
+                    width: 100%; /* Full width button */
+                }
+                .login-button {
+                    width: 100%; /* Full width button */
+                }
+            }
+            .alert {
+                padding: 10px;
+                margin: 15px;
+                border: 1px solid transparent;
+                border-radius: 5px;
+            }
 
-@media (max-width: 480px) {
-    .signup-box input {
-        width: 100%; /* Full width for very small screens */
-    }
-    .signup-button {
-        width: 100%; /* Full width button */
-    }
-    .login-button {
-        width: 100%; /* Full width button */
-    }
-}
-.alert {
-    padding: 10px;
-    margin: 15px;
-    border: 1px solid transparent;
-    border-radius: 5px;
-}
+            .alert-success {
+                color: #155724;
+                background-color: #d4edda;
+                border-color: #c3e6cb;
+            }
 
-.alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-}
+            .alert-error {
+                color: #721c24;
+                background-color: #f8d7da;
+                border-color: #f5c6cb;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="logo">MicroClassify</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('upload') }}">Upload & Classify</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('loginpage') }}">Login/Singup</a></li>
+            </ul>
+        </nav>
 
-.alert-error {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-}
-
-    </style>
-</head>
-<body>
-    <nav class="navbar">
-        <div class="logo">MicroClassify</div>
-        <ul class="nav-links">
-          <li><a href="{{ url_for('home') }}">Home</a></li>
-          <li><a href="{{ url_for('upload') }}">Upload & Classify</a></li>
-          <li><a href="{{ url_for('contact') }}">Contact</a></li>
-          <li><a href="{{ url_for('loginpage') }}">Login/Singup</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        
+        <div class="container">
             <div class="signup-box">
                 <form id="auth-form" action="{{ url_for('register') }}" method="post">
                     <h2>Create Account</h2>
-                    <input type="text" name="username" placeholder="Username">
-                    <input type="email" name="email" placeholder="Email Address">
-                    <input type="password" name="password" placeholder="Password">
-                    <input type="password" name="confirm_password" placeholder="Confirm Password">
+                    <input type="text" name="username" placeholder="Username" />
+                    <input type="email" name="email" placeholder="Email Address" />
+                    <input type="password" name="password" placeholder="Password" />
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" />
                     <button type="submit" value="signup" class="signup-button">Sign Up</button>
                 </form>
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        <div>
-                        {% for category, message in messages %}
-                            <div class="alert alert-{{ category }}">
-                            {{ message }}
-                            </div>
-                        {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endwith %}                
+                {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+                <div>
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %} {% endwith %}
             </div>
-        
-         <div class="section"> 
-            <h2>Already Registered?</h2>
-            <p>Log in to access your account and start using MicroClassify.</p>
-            <a href="{{ url_for('loginpage') }}"><button class="login-button">Log In</button></a>
+
+            <div class="section">
+                <h2>Already Registered?</h2>
+                <p>Log in to access your account and start using MicroClassify.</p>
+                <a href="{{ url_for('loginpage') }}"><button class="login-button">Log In</button></a>
+            </div>
         </div>
-    </div>
-    <footer>
-        <p>© 2024 RadarVision. All Rights Reserved.</p>
-    </footer>
-</body>
+        <footer>
+            <p>© 2024 RadarVision. All Rights Reserved.</p>
+        </footer>
+    </body>
 </html>
