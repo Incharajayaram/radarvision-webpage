@@ -1,181 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Microdropper</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-  }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contact Us - Microdropper</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Inter", sans-serif;
+            }
 
-  body {
-    background: linear-gradient(to bottom, #043873 0%, #1a3f85 40%, #245eac 100%);
-    color: rgb(7, 0, 0);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-.contact-container {
-    max-width: 600px;
-    margin: 50px auto;
-    background: #ffffff;
-    padding: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
-}
+            body {
+                background: linear-gradient(to bottom, #0a62c6 0%, #0a62c6 100%);
+                color: rgb(7, 0, 0);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                overflow-x: hidden;
+            }
+            .contact-container {
+                max-width: 600px;
+                margin: 50px auto;
+                background: #ffffff;
+                padding: 30px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                text-align: center;
+            }
 
-.contact-container h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-    color: #007bff;
-}
+            .contact-container h1 {
+                font-size: 28px;
+                margin-bottom: 10px;
+                color: #007bff;
+            }
 
-.contact-container p {
-    margin-bottom: 30px;
-    font-size: 16px;
-    color: #666;
-}
+            .contact-container p {
+                margin-bottom: 30px;
+                font-size: 16px;
+                color: #666;
+            }
 
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+            .contact-form {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
 
-.form-group {
-    text-align: left;
-}
+            .form-group {
+                text-align: left;
+            }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+            .form-group label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.3s;
-}
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                font-size: 14px;
+                outline: none;
+                transition: border-color 0.3s;
+            }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: #007bff;
-}
+            .form-group input:focus,
+            .form-group textarea:focus {
+                border-color: #007bff;
+            }
 
-.btn-submit {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+            .btn-submit {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
 
-.btn-submit:hover {
-    background-color: #0056b3;
-}
+            .btn-submit:hover {
+                background-color: #0056b3;
+            }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.3); /* More transparent */
-    padding: 15px 30px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-}
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.3); 
+                padding: 15px 30px;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 10;
+            }
 
-.navbar .logo {
-    color: white; 
-    font-weight: bold;
-    background: none; 
-    padding: 8px 10%;
-    border-radius: 50%;
-    font-size: 28px;
+            .navbar .logo {
+                color: white;
+                font-weight: bold;
+                background: none;
+                padding: 8px 10%;
+                border-radius: 50%;
+                font-size: 28px;
+            }
 
-}
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 30px;
+                margin: 0;
+                padding: 10px;
+                margin-right: 80px;
+            }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    margin: 0;
-    padding: 10px;
-    margin-right: 80px;
-}
+            .nav-links li a {
+                text-decoration: none;
+                color: white;
+                font-size: 20px;
+                padding: 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
 
-.nav-links li a {
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    padding: 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.nav-links li a:hover {
-    background-color: #4F9CF9;
-}
-    </style>
-
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">MicroClassify</div>
-            <ul class="nav-links">
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('upload') }}">Upload & Classify</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                <li><a href="{{ url_for('loginpage') }}">Login/Signup</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="contact-container">
-        <h1>Contact Us</h1>
-        <p>Have questions or need assistance? Get in touch with us.</p>
-        <form action="#" method="post" class="contact-form">
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" required>
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="mobile">Mobile Number</label>
-                <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Send</button>
-        </form>
-    </div>
-</body>
+            .nav-links li a:hover {
+                background-color: #4f9cf9;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo">MicroClassify</div>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('upload') }}">Upload & Classify</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    <li><a href="{{ url_for('loginpage') }}">Login/Signup</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="contact-container">
+            <h1>Contact Us</h1>
+            <p>Have questions or need assistance? Get in touch with us.</p>
+            <form action="#" method="post" class="contact-form">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required />
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required />
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send</button>
+            </form>
+        </div>
+    </body>
 </html>

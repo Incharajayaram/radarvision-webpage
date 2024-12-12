@@ -1,314 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MicroClassify</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MicroClassify</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Inter", sans-serif;
+            }
 
-    body {
-      background: linear-gradient(to bottom, #043873 0%, #1a3f85 40%, #245eac 100%);
-      color: white;
-      overflow-x: hidden;
-    }
+            body {
+                background: linear-gradient(to bottom, #0a62c6 0%, #0a62c6 100%);
+                color: white;
+                overflow-x: hidden;
+            }
 
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.3); /* More transparent */
-      padding: 15px 30px;
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 10;
-    }
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.3);
+                padding: 15px 30px;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 10;
+            }
 
+            .navbar .logo {
+                color: white;
+                font-weight: bold;
+                background: none;
+                padding: 8px 10%;
+                border-radius: 50%;
+                font-size: 28px;
+            }
 
-        .navbar .logo {
-            color: white; 
-            font-weight: bold;
-            background: none; 
-            padding: 8px 10%;
-            border-radius: 50%;
-            font-size: 28px;
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 30px;
+                margin: 0;
+                padding: 10px;
+                margin-right: 80px;
+            }
 
-        }
+            .nav-links li a {
+                text-decoration: none;
+                color: white;
+                font-size: 20px;
+                padding: 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-            margin: 0;
-            padding: 10px;
-            margin-right: 80px;
-        }
+            .nav-links li a:hover {
+                background-color: #4f9cf9;
+            }
 
-        .nav-links li a {
-            text-decoration: none;
-            color: white;
-            font-size: 20px;
-            padding: 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+            .image {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 100px 50px;
+                height: 100vh;
+                background-color: #0a62c6;
+            }
 
-        .nav-links li a:hover {
-            background-color: #4F9CF9;
-        }
+            .text-container {
+                margin-left: 12.5%;
+                flex: 1;
+                max-width: 600px;
+                text-align: left;
+            }
 
-    .image {
-      display: flex;
-      justify-content: space-between; 
-      align-items: center; 
-      padding: 100px 50px;
-      height: 100vh;
-    }
+            .image h1 {
+                font-size: 56px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
 
-    .text-container {
-      margin-left: 12.5%;
-      flex: 1;
-      max-width: 600px; 
-      text-align: left;
-    }
+            .image p {
+                font-size: 20px;
+                line-height: 1.8;
+                margin-bottom: 30px;
+            }
 
-    .image h1 {
-      font-size: 56px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+            .cta-button {
+                padding: 15px 40px;
+                font-size: 20px;
+                font-weight: bold;
+                color: white;
+                background-color: #4f9cf9;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s;
+            }
 
-    .image p {
-      font-size: 20px; 
-      line-height: 1.8; 
-      margin-bottom: 30px; 
-    }
+            .cta-button:hover {
+                background-color: #357ae8;
+                transform: scale(1.05);
+            }
 
-    .cta-button {
-      padding: 15px 40px;
-      font-size: 20px;
-      font-weight: bold;
-      color: white;
-      background-color: #4F9CF9;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s;
-    }
+            .image-container {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-    .cta-button:hover {
-      background-color: #357ae8;
-      transform: scale(1.05);
-    }
+            .image-container img {
+                width: 100%;
+                max-width: 600px;
+                height: auto;
+            }
 
-    .image-container {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+            .section {
+                padding: 100px 50px;
+                background: white;
+                color: black;
+            }
 
-    .image-container img {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-    }
+            .section h2 {
+                font-size: 40px;
+                margin-bottom: 20px;
+                color: #0a62c6;
+                text-align: center;
+            }
 
-    .section {
-      padding: 100px 50px;
-      background: white;
-      color: black;
-    }
+            .section p {
+                font-size: 20px;
+                line-height: 1.8;
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: center;
+            }
 
-    .section h2 {
-      font-size: 40px;
-      margin-bottom: 20px;
-      color: #043873;
-      text-align: center;
-    }
+            .features {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 50px;
+            }
 
-    .section p {
-      font-size: 20px;
-      line-height: 1.8;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
+            header {
+                color: white;
+                padding: 20px 15px;
+                text-align: center;
+            }
 
-    .features {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 50px;
-    }
-    #team-section {
-  padding: 60px 20px;
-  background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
-  color: #043873;
-  text-align: center;
-}
+            header h1 {
+                margin: 0;
+                font-size: 2.5rem;
+            }
 
-#team-section h2 {
-  font-size: 36px;
-  margin-bottom: 40px;
-  color: #043873;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
-  gap: 20px; /* Adjust the space between the boxes */
-  justify-items: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
-}
+            header p {
+                font-size: 1.2rem;
+                margin-top: 10px;
+            }
 
-.team-member {
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  padding: 30px;
-  max-width: 300px; /* Ensure the team member boxes aren't too wide */
-  transition: transform 0.3s, box-shadow 0.3s;
-  text-align: center;
-}
+            .container {
+                padding: 20px;
+                max-width: 1200px;
+                margin: auto;
+            }
 
+            .section {
+                margin-bottom: 30px;
+            }
 
-.team-member h3 {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: #043873;
-}
+            .section h2 {
+                font-size: 2rem;
+                color: #0056b3;
+                border-bottom: 2px solid #007bff;
+                padding-bottom: 5px;
+                margin-bottom: 20px;
+            }
 
-.team-member p {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #555555;
-}
+            .section p {
+                line-height: 1.6;
+            }
 
-.team-member:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
+            .classes-list {
+                margin-top: 10px;
+                padding-left: 20px;
+            }
 
-    .feature {
-      text-align: center;
-      max-width: 250px;
-    }
+            .classes-list p {
+                margin: 5px 0;
+                font-weight: bold;
+            }
 
-    .feature img {
-      width: 100px;
-      margin-bottom: 20px;
-    }
+            .experience {
+                text-align: center;
+                margin-top: 40px;
+            }
 
-    .footer {
-      background: #021d42;
-      padding: 20px;
-      text-align: center;
-      color: white;
-    }
+            .experience a {
+                text-decoration: none;
+                color: white;
+                background-color: #007bff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-size: 1rem;
+                transition: background-color 0.3s;
+            }
 
-    .footer p {
-      font-size: 16px;
-    }
+            .experience a:hover {
+                background-color: #0056b3;
+            }
 
-    .footer a {
-      color: #4F9CF9;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <nav class="navbar">
-    <div class="logo">MicroClassify</div>
-    <ul class="nav-links">
-      <li><a href="{{ url_for('home') }}">Home</a></li>
-      <li><a href="{{ url_for('upload') }}">Upload&Classify</a></li>
-      <li><a href="{{ url_for('contact') }}">Contact</a></li>
-      <li><a href="{{ url_for('loginpage') }}">Login/Signup</a></li>
-      </ul>
-    </nav>
+            footer {
+                text-align: center;
+                padding: 10px;
+                background-color: #0056b3;
+                color: white;
+                margin-top: 40px;
+            }
 
-  <div id="home" class="image">
-    <div class="text-container">
-      <h1>Get More Done with MicroClassify</h1>
-      <p>
-        RadarVision uses advanced radar and machine learning to accurately classify drones and non-drones in real-time, enhancing safety and security.      </p>
-      <a href="{{ url_for('upload') }}"><button class="cta-button">Try MicroClassify Free →</button></a>
-    </div>
-    <div class="image-container">
-      <img src="../static/images/Aircraft-rafiki.svg" alt="Illustration" />
-    </div>
-  </div>
+            @media (max-width: 768px) {
+                header h1 {
+                    font-size: 2rem;
+                }
 
-  <div id="mission" class="section">
-    <h2>Our Mission</h2>
-    <p>
-      RadarVision addresses critical safety and security challenges by using advanced radar technology to differentiate drones from other aerial entities such as birds. This innovation ensures reliable and efficient monitoring of airspace to prevent unauthorized activities and enhance security.
-    </p>
-  </div>
+                header p {
+                    font-size: 1rem;
+                }
 
-  <!-- <div id="features" class="section">
-    <h2>Key Features</h2>
-    <div class="features">
-      <div class="feature">
-        <img src="icon1.png" alt="Feature Icon">
-        <p>Real-Time Classification</p>
-      </div>
-      <div class="feature">
-        <img src="icon2.png" alt="Feature Icon">
-        <p>High Accuracy</p>
-      </div>
-      <div class="feature">
-        <img src="icon3.png" alt="Feature Icon">
-        <p>Web-Based Deployment</p>
-      </div>
-    </div>
-  </div> -->
-  
-<!--team details-->
-<div id="team-section" class="section">
-  <h2>Meet Our Team</h2>
-  <div class="team-grid">
-    <div class="team-member">
-      <h3>Inchara</h3>
-      <p>Team Leader with expertise in AI and ML, ensuring innovative solutions and effective collaboration.</p>
-    </div>
-    
-    <div class="team-member">
-      <h3>Diptangshu</h3>
-      <p>IoT expert working on integrating smart devices and seamless communication systems.</p>
-    </div>
-    <div class="team-member">
-      <h3>Anand</h3>
-      <p>Handles frontend and backend development, ensuring robust functionality and smooth interfaces.</p>
-    </div>
-    <div class="team-member">
-      <h3>Shravya</h3>
-      <p>Focuses on AI/ML development, creating intelligent systems that enhance user experiences.</p>
-    </div>
-    <div class="team-member">
-      <h3>Likith</h3>
-      <p>UI/UX designer crafting intuitive and visually appealing user experiences.</p>
-    </div>
-    <div class="team-member">
-      <h3>Chethan</h3>
-      <p>Frontend developer focused on building dynamic and responsive web components.</p>
-    </div>
-  </div>
-</div>
+                .section h2 {
+                    font-size: 1.5rem;
+                }
+            }
 
+            #team-section {
+                padding: 60px 20px;
+                background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+                color: #043873;
+                text-align: center;
+            }
 
-  <div id="contact" class="footer">
-    <p>Contact us at <a href="mailto:contact@radarvision.com">contact@radarvision.com</a> or visit our <a href="#">Help Center</a>.</p> <!-- change this later -->
-  </div>
-</body>
+            #team-section h2 {
+                font-size: 36px;
+                margin-bottom: 40px;
+                color: #043873;
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            }
+            .team-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                justify-items: center;
+                align-items: center;
+            }
+
+            .team-member {
+                background: #ffffff;
+                border-radius: 15px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                padding: 30px;
+                max-width: 300px;
+                transition: transform 0.3s, box-shadow 0.3s;
+                text-align: center;
+            }
+
+            .team-member h3 {
+                font-size: 22px;
+                margin-bottom: 10px;
+                color: #043873;
+            }
+
+            .team-member p {
+                font-size: 16px;
+                line-height: 1.5;
+                color: #555555;
+            }
+
+            .team-member:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .feature {
+                text-align: center;
+                max-width: 250px;
+            }
+
+            .feature img {
+                width: 100px;
+                margin-bottom: 20px;
+            }
+
+            .footer {
+                background: #021d42;
+                padding: 20px;
+                text-align: center;
+                color: white;
+            }
+
+            .footer p {
+                font-size: 16px;
+            }
+
+            .footer a {
+                color: #4f9cf9;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            .scroll-to-top {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #4f9cf9;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+
+            .scroll-to-top:hover {
+                background-color: #ebebec;
+                transform: scale(1.1);
+            }
+
+            .navbar {
+                transition: top 0.3s ease-in-out;
+            }
+
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color: white;
+                color: rgb(243, 238, 238);
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            header h1 {
+                color: rgb(244, 244, 247);
+                font-size: 2rem;
+                margin: 0;
+            }
+
+            header p {
+                font-size: 1.2rem;
+                margin: 5px 0 0 0;
+                color: #e9ecef;
+            }
+            #about {
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: center;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+
+            #about h2 {
+                color: rgb(235, 235, 239);
+                font-size: 1.5rem;
+                margin: 20px 0 10px 0;
+            }
+
+            #about p {
+                font-size: 1.2rem;
+                line-height: 1.6;
+                margin: 10px 0;
+            }
+            #about ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            #about ul li {
+                font-size: 1.2rem;
+                margin: 5px 0;
+            }
+
+            @media (max-width: 768px) {
+                header h1 {
+                    font-size: 1.5rem;
+                }
+
+                header p {
+                    font-size: 1.2rem;
+                }
+
+                #about h2 {
+                    font-size: 1.2rem;
+                }
+                #about p,
+                #about ul li {
+                    font-size: 0.9rem;
+                }
+            }
+
+            #about ul {
+                list-style: disc;
+                padding-left: 20px;
+                text-align: left;
+            }
+
+            #about ul li {
+                font-size: 1rem;
+                margin: 5px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="logo">MicroClassify</div>
+            <ul class="nav-links">
+                <li>
+                    <a href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('upload') }}">Upload&Classify</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('contact') }}">Contact</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('loginpage') }}">Login/Signup</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="home" class="image">
+            <div class="text-container">
+                <h1>Get More Done with MicroClassify</h1>
+                <p>
+                    RadarVision uses advanced radar and machine learning to accurately classify drones and non-drones in real-time, enhancing safety and security.
+                </p>
+                <a href="{{ url_for('upload') }}">
+                    <button class="cta-button">Try MicroClassify Free →</button>
+                </a>
+            </div>
+            <div class="image-container">
+                <img src="../static/images/Aircraft-rafiki.svg" alt="Illustration" />
+            </div>
+        </div>
+        <div id="mission" class="section">
+            <h2>Our Mission</h2>
+            <p>
+                RadarVision addresses critical safety and security challenges by using advanced radar technology to differentiate drones from other aerial entities such as birds. This innovation ensures reliable and efficient monitoring of
+                airspace to prevent unauthorized activities and enhance security.
+            </p>
+        </div>
+        <header>
+            <h1>Micro Doppler Classification Project</h1>
+            <p>Advanced Protective Measures Against Small Aerial Threats</p>
+        </header>
+        <section id="about">
+            <h2>Abstract Model and Dataset</h2>
+            <hr />
+            <p>
+                Our project leverages a continuous wave (CW) radar operating at X-band (10 GHz) to build a diversified dataset comprising 4,849 micro-Doppler signature images of six different small aerial targets. These images train a deep
+                convolutional neural network (DCNN) based on transfer learning to achieve high classification accuracy.
+            </p>
+            <h2>Classes of Aerial Targets</h2>
+            <hr />
+            <ul>
+                <li>Three-Long-Blade Rotor</li>
+                <li>Three-Short-Blade Rotor</li>
+                <li>Bird</li>
+                <li>Bird + Mini-Helicopter</li>
+                <li>Drone</li>
+                <li>RC Plane</li>
+            </ul>
+            <h2>Why This Matters?</h2>
+            <hr />
+            <p>
+                As small UAVs become more common, the ability to automatically detect and classify these targets is essential for ensuring security and safety. Our approach not only demonstrates high accuracy but also provides a robust
+                solution for real-time identification of multiple aerial targets operating simultaneously.
+            </p>
+        </section>
+        <div id="team-section" class="section">
+            <h2>Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>Inchara</h3>
+                    <p>Team Leader with expertise in AI and ML, ensuring innovative solutions and effective collaboration.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Diptangshu</h3>
+                    <p>IoT expert working on integrating smart devices and seamless communication systems.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Anand</h3>
+                    <p>Handles frontend and backend development, ensuring robust functionality and smooth interfaces.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Shravya</h3>
+                    <p>Focuses on AI/ML development, creating intelligent systems that enhance user experiences.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Likith</h3>
+                    <p>UI/UX designer crafting intuitive and visually appealing user experiences.</p>
+                </div>
+                <div class="team-member">
+                    <h3>Chethan</h3>
+                    <p>Frontend developer focused on building dynamic and responsive web components.</p>
+                </div>
+            </div>
+        </div>
+        <div id="contact" class="footer">
+            <p>Contact us at <a href="mailto:contact@radarvision.com">contact@radarvision.com</a> .</p>
+            <!-- change this later -->
+        </div>
+        <!--up button-->
+        <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()">↑</button>
+        <script>
+            let lastScrollTop = 0;
+            const navbar = document.querySelector(".navbar");
+
+            window.addEventListener("scroll", function () {
+                const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (currentScrollTop > lastScrollTop) {
+                    navbar.style.top = "-100px";
+                } else {
+                    navbar.style.top = "0";
+                }
+
+                lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+            });
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+            window.onscroll = function () {
+                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                    scrollToTopBtn.style.display = "flex";
+                } else {
+                    scrollToTopBtn.style.display = "none";
+                }
+            };
+
+            function scrollToTop() {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        </script>
+    </body>
 </html>

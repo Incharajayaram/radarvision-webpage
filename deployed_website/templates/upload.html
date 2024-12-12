@@ -1,267 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Upload and Predict</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Inter", sans-serif;
+            }
 
-    body {
-      background: linear-gradient(to bottom, #043873 0%, #1a3f85 40%, #245eac 100%);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+            body {
+                background: linear-gradient(to bottom, #0a62c6 0%, #0a62c6 100%);
+                color: white;
+                overflow-x: hidden;
+            }
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.3); /* More transparent */
+                padding: 15px 30px;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 10;
+            }
 
-.navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.3); /* More transparent */
-            padding: 15px 30px;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 10;
-        }
+            .navbar .logo {
+                color: white;
+                font-weight: bold;
+                background: none;
+                padding: 8px 10%;
+                border-radius: 50%;
+                font-size: 28px;
+            }
 
-        .navbar .logo {
-            color: white; 
-            font-weight: bold;
-            background: none; 
-            padding: 8px 10%;
-            border-radius: 50%;
-            font-size: 28px;
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 30px;
+                margin: 0;
+                padding: 10px;
+                margin-right: 80px;
+            }
 
-        }
+            .nav-links li a {
+                text-decoration: none;
+                color: white;
+                font-size: 20px;
+                padding: 15px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-            margin: 0;
-            padding: 10px;
-            margin-right: 80px;
-        }
+            .nav-links li a:hover {
+                background-color: #4f9cf9;
+            }
 
-        .nav-links li a {
-            text-decoration: none;
-            color: white;
-            font-size: 20px;
-            padding: 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+            h1 {
+                color: white;
+                text-align: center;
+                margin-top: 100px;
+                margin-bottom: 20px;
+                font-size: 2.2rem;
+            }
 
-        .nav-links li a:hover {
-            background-color: #4F9CF9;
-        }
-/* Container */
-.container {
-    background: #ffffff;
-    color: #2e3b4e;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 500px;
-    padding: 30px;
-    margin-top: 80px;
-    text-align: center;
-}
+            form {
+                background-color: #ffffff;
+                padding: 25px;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 500px;
+                margin: 20px auto;
+            }
 
-.container h2 {
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-    color: #2e3b4e;
-}
+            label {
+                font-size: 1rem;
+                display: block;
+                margin-bottom: 15px;
+                color: #333;
+            }
 
-#image-label {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    gap: 8px;
-}
+            input[type="radio"] {
+                margin-right: 10px;
+            }
 
-#image-label:hover {
-    background: #388E3C;
-}
+            input[type="file"] {
+                margin-bottom: 20px;
+                padding: 10px;
+                background-color: #f4f9ff;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                width: 100%;
+                cursor: pointer;
+            }
 
-#image {
-    display: none;
-}
+            input[type="file"]::-webkit-file-upload-button {
+                background-color: #2a77c0;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
 
-/* Image Preview */
-#preview {
-    margin-top: 20px;
-}
+            input[type="file"]::-webkit-file-upload-button:hover {
+                background-color: #2468a3;
+            }
 
-#preview img {
-    max-width: 100%;
-    border-radius: 5px;
-    border: 2px solid #e0e0e0;
-}
+            button {
+                background-color: #2a77c0;
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 100%;
+                font-size: 1rem;
+                transition: background-color 0.3s ease;
+            }
 
-/* Submit Button */
-button[type="submit"] {
-    background: #007BFF;
-    color: white;
-    font-size: 1.1rem;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
+            button:hover {
+                background-color: #2468a3;
+            }
 
-button[type="submit"]:hover {
-    background: #0056b3;
-    transform: scale(1.05);
-}
+            #results {
+                margin-top: 20px;
+                padding: 15px;
+                border-radius: 5px;
+                background-color: rgba(255, 255, 255, 0.9);
+                width: 100%;
+                max-width: 500px;
+                margin: 20px auto;
+                text-align: center;
+            }
 
-/* Sample Link */
-.sample-link {
-    display: block;
-    margin-top: 20px;
-    font-size: 0.9rem;
-    color: #1a73e8;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
+            #prediction,
+            #confidence,
+            #time {
+                font-size: 1.2rem;
+                color: #333;
+                margin: 10px 0;
+            }
 
-.sample-link:hover {
-    color: #004ba0;
-}
-#results {
-    margin-top: 25px;
-    padding: 20px;
-    background: #eef4fd; /* Slightly brighter, soft background */
-    border: 2px solid #3a81f1; /* Noticeable but clean border */
-    border-radius: 10px;
-    display: none;
-    color: #1e2a42; /* Darker text for stronger readability */
-    font-size: 1.3rem; /* Slightly larger for clarity */
-    font-weight: 500;
-    line-height: 1.6;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(58, 129, 241, 0.2); /* Subtle shadow for lift */
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth appearance */
-    transform: scale(0.98);
-    opacity: 0;
-}
+            .error {
+                color: red;
+                font-size: 1rem;
+                text-align: center;
+                margin-top: 10px;
+            }
 
-#results.visible {
-    display: block;
-    transform: scale(1);
-    opacity: 1;
-}
+            /* Mobile Responsiveness */
+            @media (max-width: 768px) {
+                .navbar .logo {
+                    font-size: 24px;
+                }
 
-#results p {
-    margin-bottom: 15px;
-}
+                .nav-links {
+                    gap: 15px;
+                }
 
-#results p#prediction {
-    font-weight: 600; /* Slightly bolder for emphasis */
-}
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-/* Spinner */
-#spinner {
-    display: none;
-    margin: 20px auto;
-    width: 40px;
-    height: 40px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #2e75c7;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
+                .nav-links li a {
+                    font-size: 16px;
+                }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+                h1 {
+                    font-size: 1.8rem;
+                }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
+                form {
+                    max-width: 90%;
+                    padding: 20px;
+                }
 
-    nav {
-        flex-direction: column;
-    }
-}
+                button {
+                    font-size: 0.9rem;
+                }
+            }
 
-    </style>
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">MicroClassify</div>
-            <ul class="nav-links">
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('upload') }}">Upload & Classify</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                <li><a href="{{ url_for('loginpage') }}">Login/Signup</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="container">
-        <h2>Select File</h2>
-        <form id="prediction-form" enctype="multipart/form-data">
-            <label for="image" id="image-label">
-				<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20px" height="20px" style="vertical-align: middle; margin-right: 8px;">
-					<path d="M0 0h24v24H0z" fill="none"/>
-					<path d="M10 16v-4H6l6-6 6 6h-4v4h-4zm-6 4h16v2H4v-2z"/>
-				</svg>
-				Choose Image
-			</label>
-			
-			
-            <input type="file" id="image" name="image" accept="image/*" required>
-            <div id="preview"></div>
+            @media (max-width: 480px) {
+                .nav-links {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .navbar {
+                    flex-direction: column;
+                    padding: 20px;
+                }
+
+                .nav-links li a {
+                    margin: 5px 0;
+                    padding: 10px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo">MicroClassify</div>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('upload') }}">Upload & Classify</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    <li><a href="{{ url_for('loginpage') }}">Login/Signup</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <h1 style="margin-top: 12%;">Upload and Predict</h1>
+        <form id="upload-form" method="post">
+            <label> <input type="radio" name="model" value="cnn" /> Custom CNN model </label>
+            <label> <input type="radio" name="model" value="vgg" /> VGG model </label>
+            <label> <input type="radio" name="model" value="cnnwa" /> CNN with spatial Attention </label>
+            <label for="image">Choose an image:</label>
+            <input type="file" name="image" id="image" accept="image/*" style="color: #222;" />
             <button type="submit">Submit</button>
+            <div id="results">
+                <p id="prediction"></p>
+                <p id="confidence"></p>
+                <p id="time"></p>
+            </div>
         </form>
-        
-        <div id="spinner"></div>
-        <div id="results">
-            <p id="prediction">Prediction: </p>
-            <p id="confidence">Confidence: </p>
-        </div>
-		<a href="{{ url_for('sample_upload')}}" class="sample-link">Use our sample images</a>
-    </div>
-    <button id="back-to-top" style="display: none;">&uarr;</button>
-    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
-</body>
+
+        <script>
+            document.getElementById("upload-form").addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const formData = new FormData();
+                const fileInput = document.getElementById("image");
+                const selectedModel = document.querySelector('input[name="model"]:checked');
+
+                if (!fileInput.files.length) {
+                    alert("Please upload an image.");
+                    return;
+                }
+                if (!selectedModel) {
+                    alert("Please select a model.");
+                    return;
+                }
+
+                formData.append("image", fileInput.files[0]);
+                formData.append("model", selectedModel.value);
+
+                try {
+                    const response = await fetch("http://127.0.0.1:5000/predict", {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Prediction failed");
+                    }
+
+                    const data = await response.json();
+                    document.getElementById("prediction").textContent = `Prediction: ${data.prediction}`;
+                    document.getElementById("confidence").textContent = `Confidence: ${data.confidence}`;
+                    document.getElementById("time").textContent = `time: ${data.time}`;
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Error in prediction. Please try again.");
+                }
+            });
+        </script>
+    </body>
 </html>
