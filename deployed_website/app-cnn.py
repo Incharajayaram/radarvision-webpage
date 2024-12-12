@@ -87,15 +87,6 @@ model.load_state_dict(torch.load(model_path, map_location=device))
 model.eval()
 
 
-def predict(image_tensor, class_names):
-    image_tensor = image_tensor.to(device)  
-    with torch.no_grad():
-        output = model(image_tensor)
-        probabilities = F.softmax(output, dim=1)
-        confidence, predicted = torch.max(probabilities, 1)
-    return class_names[predicted.item()], confidence.item()
-
-
 app = Flask(__name__)
 
 #DATABASE
@@ -139,15 +130,22 @@ def home():
 def about():
     return render_template("about.html")
 
-@app.route('/predict', methods=['POST'])
-def predict_route():
-    file = request.files['image']
-    image = Image.open(file.stream).convert('RGB')
-    image = transform(image).unsqueeze(0)
-    class_names = ['3 long blade rotor', '3 short blade rotor', 'Bird', 'Bird + mini-helicopter', 'Drone', 'RC Plane']
-    prediction, confidence = predict(image, class_names)
-    app.logger.info('Prediction: %s, Confidence: %.4f', prediction, confidence)
-    return jsonify({'prediction': prediction, 'confidence': confidence})
+def predict():
+    images = request.files.getlist('images')  # Get all images
+    results = []
+    
+    for img_file in images:
+        img_bytes = img_file.read()  # Read image file
+        img_tensor = preprocess_image(img_bytes)  # Preprocess image
+        output = model(img_tensor)  # Make prediction
+        _, predicted_class = torch.max(output, 1)
+        results.append({
+            'filename': img_file.filename,
+            'predicted_class': predicted_class.item()
+        })
+    
+    # Return results as JSON
+    return jsonify(results)
 
 @app.route('/health', methods=['GET'])
 def health_check():

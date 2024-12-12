@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification Stream</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div><h1>Real-Time Image Classification</h1></div>
+    
+    <div class="image-container" id="image-container">
+        <img id="image-preview" src="" alt="Image Preview"/>
+    </div>
+
+    <div id="results">
+        <p id="prediction">Prediction: <span class="result-value">Loading...</span></p>
+        <p id="confidence">Confidence: <span class="result-value">0%</span></p>
+    </div>
+
+    <script>
+        const socket = io(); // Initialize Socket.IO
+
+        // Listen for image stream events from the server
+        socket.on('image_stream', function(data) {
+            document.getElementById('image-preview').src = data.image; // Update image preview
+            document.getElementById('prediction').textContent = `Prediction: ${data.prediction}`;
+            document.getElementById('confidence').textContent = `Confidence: ${data.confidence}%`;
+        });
+    </script>
+</body>
+</html>
