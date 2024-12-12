@@ -1,4 +1,3 @@
-from flask import Flask, request, jsonify, render_template
 import torch 
 from PIL import Image
 from torchvision import transforms
@@ -11,13 +10,7 @@ from flask import Flask, request, jsonify, render_template, redirect, session, u
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-import torch
-from PIL import Image
-from torchvision import transforms
 import torch.nn as nn
-import torch.nn.functional as F
-import logging
-import os
 from dotenv import load_dotenv
 from config import Config
 
@@ -105,11 +98,6 @@ class User(db.Model):
 if not app.debug: 
     logging.basicConfig(level=logging.INFO)
 
-transform = transforms.Compose([
-    transforms.Resize((224, 224)),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
 
 @app.route('/')
 def home():

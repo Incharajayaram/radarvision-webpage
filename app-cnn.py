@@ -160,7 +160,7 @@ def contact():
     return render_template('contact.html', access_key=access_key)
 
 
-@app.route('/upload')
+@app.route('/upload', methods = ['POST', 'GET'])
 def upload():
     if "username" not in session:
         flash("Please log in to access this page.", "error")
