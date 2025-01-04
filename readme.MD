@@ -44,3 +44,5 @@ Directory structure:
 deployed_website: contains the code for frontend and backend of the custom website made for MicroClassify as a product.
 rpi_website: website to be deployed on raspberry PI 5, and it has a streaming pipeline to provide model inference in real time classification.
 ```
+
+**note: check for sample images in deployed_website\static\sample_images**
