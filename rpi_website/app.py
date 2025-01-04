@@ -84,6 +84,41 @@ def predict(image_tensor):
 def home():
     return render_template("index.html")
 
+'''import os
+import random
+import shutil
+
+def shuffle_and_save_images(source_folder, destination_folder):
+    # Create destination folder if it doesn't exist
+    if not os.path.exists(destination_folder):
+        os.makedirs(destination_folder)
+
+    # Gather all images from the source folder
+    all_images = []
+    for class_name in os.listdir(source_folder):
+        class_path = os.path.join(source_folder, class_name)
+        if os.path.isdir(class_path):  # Ensure it's a directory
+            images = [os.path.join(class_path, img) for img in os.listdir(class_path) if img.endswith(('.png', '.jpg', '.jpeg'))]
+            all_images.extend(images)
+
+    # Shuffle the images
+    random.shuffle(all_images)
+
+    # Save shuffled images to the destination folder
+    for idx, img_path in enumerate(all_images):
+        # Create a new filename based on index
+        new_filename = f"image_{idx + 1}{os.path.splitext(img_path)[1]}"
+        shutil.copy(img_path, os.path.join(destination_folder, new_filename))
+
+    print(f"Shuffled {len(all_images)} images saved to '{destination_folder}'.")
+
+# Example usage
+source_folder = 'D:/Micro-Classify/ml_model/notebooks/DIAT-uSAT_dataset'  # Change this to your source folder path
+destination_folder = 'D:/webpage-microdopler/Frontend/rpi_website/shuffled_images'  # Change this to your destination folder path
+
+shuffle_and_save_images(source_folder, destination_folder)
+'''
+
 def stream_images():
     # image_folder_path = 'D:/Micro-Classify/ml_model/notebooks/DIAT-uSAT_dataset/3_long_blade_rotor' 
     image_folder_path = 'shuffled_images' 
