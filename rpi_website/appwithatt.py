@@ -10,19 +10,6 @@ import torch.nn.functional as F
 import base64
 import io
 
-# Define the CNN model class
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from torch.optim import lr_scheduler
-import torch.nn.functional as F
-from torch.utils.data import DataLoader, random_split
-from tqdm import tqdm
-from sklearn.metrics import confusion_matrix, roc_curve, auc
-import seaborn as sns
-import matplotlib.pyplot as plt
-from torchvision import transforms
-from sklearn.metrics import accuracy_score
 
 # Data Augmentation and Normalization
 transform = transforms.Compose([
@@ -117,7 +104,7 @@ device = torch.device("cpu")
 model.to(device)
 
 # Load trained model weights (ensure this path is correct)
-model_path = 'best_model_CustomCNN.pt'
+model_path = 'best_model_CustomCNNWithAttention.pt'
 model.load_state_dict(torch.load(model_path, map_location=device))
 model.eval()
 
