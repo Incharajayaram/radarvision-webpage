@@ -398,7 +398,7 @@ def register():
         user = User.query.filter_by(username=username).first()
 
         if user:
-            flash("Username already exists,Login instead", "error")
+            flash("Username already exists, login instead", "error")
             return redirect(url_for('signup'))
         else:
             new_user = User(username=username, email=email)
